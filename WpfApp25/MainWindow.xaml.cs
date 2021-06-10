@@ -128,6 +128,16 @@ namespace WpfApp25
             if (totalEnemies < 30)
             {
                 enemySpeed = 9;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    Random random = new Random();
+                    EnemyBulletMaker(random.Next(0, 130), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(0, 300), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(500, 740), random.Next(3, 10));
+                    bulletTimer = bulletTimerLimit;
+                }
             }
 
             if(totalEnemies < 20)
@@ -135,7 +145,7 @@ namespace WpfApp25
                 enemySpeed = 10;
             }     
 
-            if (totalEnemies == 3)
+            if (totalEnemies < 3)
             {
                 enemySpeed = 16;
             }
@@ -188,10 +198,13 @@ namespace WpfApp25
 
         private void EnemyBulletMaker(double x, double y)
         {
-            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill = Brushes.Red, Stroke = Brushes.OrangeRed, StrokeThickness = 5 };
+            ImageBrush bulletEnemy = new ImageBrush();
+            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill =bulletEnemy, StrokeThickness = 5 };
             Canvas.SetTop(enemyBullet, y);
             Canvas.SetLeft(enemyBullet, x);
             myCanvas.Children.Add(enemyBullet);
+            bulletEnemy.ImageSource = new BitmapImage(new Uri("Images/BossBullet2.png", UriKind.Relative));
+
         }
 
         private void MakeEnemies(int limit)

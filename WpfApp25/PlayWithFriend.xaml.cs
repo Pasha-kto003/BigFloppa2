@@ -42,7 +42,7 @@ namespace WpfApp25
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
             gameTimer.Start();
             //gameTimer.Stop();
-            playerSkin.ImageSource = new BitmapImage(new Uri("Images/Pasha (1).png", UriKind.Relative));
+            playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
             friendSkin.ImageSource = new BitmapImage(new Uri("Images/player.png", UriKind.Relative));
             canvasSkin.ImageSource = new BitmapImage(new Uri("Images/SpaceForGame.png", UriKind.Relative));
             player.Fill = playerSkin;
@@ -240,10 +240,12 @@ namespace WpfApp25
 
         private void EnemyBulletMaker(double x, double y)
         {
-            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill = Brushes.Red, Stroke = Brushes.OrangeRed, StrokeThickness = 5 };
+            ImageBrush bullet = new ImageBrush(); 
+            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill = bullet, StrokeThickness = 5 };
             Canvas.SetTop(enemyBullet, y);
             Canvas.SetLeft(enemyBullet, x);
             myCanvas.Children.Add(enemyBullet);
+            bullet.ImageSource = new BitmapImage(new Uri("Images/BossBullet2.png", UriKind.Relative));
         }
 
         private void myCanvas_KeyDown(object sender, KeyEventArgs e)
@@ -290,16 +292,16 @@ namespace WpfApp25
                 switch (ImagesOfEnemy)
                 {
                     case 1:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Pasha1.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien1.png", UriKind.Relative));
                         break;
                     case 2:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Pasha21.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien2.png", UriKind.Relative));
                         break;
                     case 3:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Pasha3.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien3.png", UriKind.Relative));
                         break;
                     case 4:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Pasha_4.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien4.png", UriKind.Relative));
                         break;
                     default:
                         break;
