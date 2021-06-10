@@ -45,8 +45,8 @@ namespace WpfApp25
 
         public Boss()
     {
-            
-        InitializeComponent();
+
+            InitializeComponent();
         gameTimer.Tick += GameLoop;
         gameTimer.Interval = TimeSpan.FromMilliseconds(30);
         gameTimer.Start();
@@ -214,10 +214,10 @@ namespace WpfApp25
                 if (x.Tag.ToString() != "shield")
             myCanvas.Children.Remove(x);
                 if (canRemove)
-                        myCanvas.Children.Remove(x);
-            
-        }
-      
+                    myCanvas.Children.Remove(x);
+
+            }
+
             if (bossHealth < 900)
         {
             bossSpeed = 11 * side;

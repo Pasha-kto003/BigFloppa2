@@ -292,16 +292,16 @@ namespace WpfApp25
                 switch (ImagesOfEnemy)
                 {
                     case 1:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien1.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/uml474uuydh41.jpg", UriKind.Relative));
                         break;
                     case 2:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien2.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/CarcoDemon1.png", UriKind.Relative));
                         break;
                     case 3:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien3.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/uml474uuydh41.jpg", UriKind.Relative));
                         break;
                     case 4:
-                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/Alien4.png", UriKind.Relative));
+                        enemySkin.ImageSource = new BitmapImage(new Uri("Images/uml474uuydh41.jpg", UriKind.Relative));
                         break;
                     default:
                         break;

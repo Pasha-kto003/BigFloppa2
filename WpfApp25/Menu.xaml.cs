@@ -25,7 +25,7 @@ namespace WpfApp25
         {
             InitializeComponent();
             mygrid.Background = myGridSkin;
-            myGridSkin.ImageSource = new BitmapImage(new Uri("Images/SpaceForGame.png", UriKind.Relative));
+            myGridSkin.ImageSource = new BitmapImage(new Uri("Images/Menu.png", UriKind.Relative));
             mygrid.Focus();
         }
 
