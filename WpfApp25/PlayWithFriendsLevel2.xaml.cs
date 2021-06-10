@@ -16,9 +16,9 @@ using System.Windows.Threading;
 namespace WpfApp25
 {
     /// <summary>
-    /// Логика взаимодействия для PlayWithFriend.xaml
+    /// Логика взаимодействия для PlayWithFriendsLevel2.xaml
     /// </summary>
-    public partial class PlayWithFriend : Window
+    public partial class PlayWithFriendsLevel2 : Window
     {
         bool goLeft, goRight;
         bool goLeftFrnd, goRightFrnd;
@@ -34,14 +34,12 @@ namespace WpfApp25
         ImageBrush playerSkin = new ImageBrush();
         ImageBrush friendSkin = new ImageBrush();
         ImageBrush canvasSkin = new ImageBrush();
-
-        public PlayWithFriend()
+        public PlayWithFriendsLevel2()
         {
             InitializeComponent();
             gameTimer.Tick += GameLoop;
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
             gameTimer.Start();
-            //gameTimer.Stop();
             playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
             friendSkin.ImageSource = new BitmapImage(new Uri("Images/player.png", UriKind.Relative));
             canvasSkin.ImageSource = new BitmapImage(new Uri("Images/SpaceForGame.png", UriKind.Relative));
@@ -49,9 +47,8 @@ namespace WpfApp25
             friend.Fill = friendSkin;
             myCanvas.Background = canvasSkin;
             myCanvas.Focus();
-            MakeEnemies(60);
+            MakeEnemies(80);
         }
-
         private void GameLoop(object sender, EventArgs e) // начало игрового цикла
         {
             Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
@@ -168,17 +165,23 @@ namespace WpfApp25
                 myCanvas.Children.Remove(i);
             }
 
-            if (totalEnemies < 30)
+            if (totalEnemies < 50)
             {
                 enemySpeed = 12;
+                Random random = new Random();
+                EnemyBulletMaker(random.Next(0, 130), random.Next(3, 10));
+                EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
+                EnemyBulletMaker(random.Next(0, 300), random.Next(3, 10));
+                EnemyBulletMaker(random.Next(500, 740), random.Next(3, 10));
+                bulletTimer = bulletTimerLimit;
             }
 
-            if (totalEnemies < 20)
+            if (totalEnemies < 30)
             {
                 enemySpeed = 15;
             }
 
-            if (totalEnemies == 3)
+            if (totalEnemies < 10)
             {
                 enemySpeed = 18;
             }
@@ -186,11 +189,9 @@ namespace WpfApp25
             if (totalEnemies < 1)
             {
                 ShowGameOver("Поздравляю вы выиграли!");
-                PlayWithFriendsLevel2 lv2 = new PlayWithFriendsLevel2();
-                lv2.Show();
-                Close();
             }
-        } 
+        } //конец цикла
+
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
@@ -239,7 +240,7 @@ namespace WpfApp25
 
         private void EnemyBulletMaker(double x, double y)
         {
-            ImageBrush bullet = new ImageBrush(); 
+            ImageBrush bullet = new ImageBrush();
             Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill = bullet, StrokeThickness = 5 };
             Canvas.SetTop(enemyBullet, y);
             Canvas.SetLeft(enemyBullet, x);
@@ -315,4 +316,3 @@ namespace WpfApp25
         }
     }
 }
-

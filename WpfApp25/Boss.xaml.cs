@@ -23,7 +23,6 @@ namespace WpfApp25
     {
         bool goLeft, goRight;
         List<Rectangle> itemsToRemove = new List<Rectangle>();
-        int ImageOfBoss = 0; 
         int bulletTimer = 0; 
         int bulletTimerLimit = 90; 
         int bossSpeed; 
@@ -102,7 +101,7 @@ namespace WpfApp25
             {
                 Canvas.SetLeft(newShield, -80);
        
-            }
+            }    
             Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
         liveBoss.Content = "Осталось здоровья у босса: " + bossHealth;
         if (goLeft == true && Canvas.GetLeft(player) > 0)
@@ -189,7 +188,6 @@ namespace WpfApp25
                         //myCanvas.Children.Remove(x);
                     if (shieldHealth < 1)
                     {
-                        //myCanvas.Children.Remove(newShield);
                         itemsToRemove.Add(newShield);
                             canRemove = true;
                             canIntersect = false;
@@ -199,14 +197,7 @@ namespace WpfApp25
 
 
             }
-            //if (x is Rectangle && (string)x.Tag =="shield")
-            //{
-            //    Rect shieldHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-            //    if (shieldHitBox.IntersectsWith(bossBulletHitBox)) // касние пули босса щита
-            //    {
-            //        MessageBox.Show("выафы");
-            //    }
-            //}
+
         }
 
         foreach (Rectangle x in itemsToRemove)
@@ -216,7 +207,7 @@ namespace WpfApp25
                 if (canRemove)
                     myCanvas.Children.Remove(x);
 
-            }
+        }
 
             if (bossHealth < 900)
         {
@@ -366,5 +357,5 @@ namespace WpfApp25
         gameTimer.Stop();
         liveBoss.Content = " " + message + " Нажмите Enter чтобы снова играть";
     }
-    }
+  }
 }
