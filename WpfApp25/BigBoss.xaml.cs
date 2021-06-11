@@ -54,9 +54,10 @@ namespace WpfApp25
             bossTimer.Start();
             //gameTimer.Stop();
             playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
-            friendSkin.ImageSource = new BitmapImage(new Uri("Image/player.png", UriKind.Relative));
-            myCanvasSkin.ImageSource = new BitmapImage(new Uri("Images/BigFloppanew.png", UriKind.Relative));
+            friendSkin.ImageSource = new BitmapImage(new Uri("Images/friend.png", UriKind.Relative));
+            myCanvasSkin.ImageSource = new BitmapImage(new Uri("Images/hell3.png", UriKind.Relative));
             player.Fill = playerSkin;
+            friend.Fill = friendSkin;
             myCanvas.Background = myCanvasSkin;
             myCanvas.Focus();
             progres.Maximum = bossHealth;
@@ -102,13 +103,25 @@ namespace WpfApp25
                 Canvas.SetLeft(newShield, -80);
 
             }
-            Rect friendHitBox = new Rect(Canvas.GetLeft(friend), Canvas.GetTop(friend), friend.Width, friend.Height);
             Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
-            liveBoss.Content = "Осталось здоровья у босса: " + bossHealth;
+            Rect friendHitBox = new Rect(Canvas.GetLeft(friend), Canvas.GetTop(friend), friend.Width, friend.Height);
+            liveBoss.Content = "Осталось всего здоровья: " + bossHealth;
+
             if (goLeft == true && Canvas.GetLeft(player) > 0)
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) - 10);
             }
+
+            if (goLeftFrnd == true && Canvas.GetLeft(friend) > 0)
+            {
+                Canvas.SetLeft(friend, Canvas.GetLeft(friend) - 10);
+            }
+
+            if (goRightFrnd == true && Canvas.GetLeft(friend) + 80 < Application.Current.MainWindow.Width)
+            {
+                Canvas.SetLeft(friend, Canvas.GetLeft(friend) + 10);
+            }
+
             if (goRight == true && Canvas.GetLeft(player) + 80 < Application.Current.MainWindow.Width)
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + 10);
@@ -158,23 +171,29 @@ namespace WpfApp25
                 if (x is Rectangle && (string)x.Tag == "bulletFrnd")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
+
                     if (Canvas.GetTop(x) < 10)
                     {
                         itemsToRemove.Add(x);
                     }
-                    Rect bulletFrnd = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    Rect friendbullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     foreach (var y in myCanvas.Children.OfType<Rectangle>())
                     {
                         if (y is Rectangle && (string)y.Tag == "boss")
                         {
                             Rect bossHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
 
-                            if (bulletFrnd.IntersectsWith(bossHit))
+                            if (friendbullet.IntersectsWith(bossHit))
                             {
+                                if (bossHealth < 1)
+                                {
+                                    itemsToRemove.Add(y);
+                                }
                                 itemsToRemove.Add(x);
-                                itemsToRemove.Add(y);
                                 bossHealth -= 10;
+                                progres.Value = bossHealth;
                             }
+
                         }
                     }
                 }
@@ -227,7 +246,6 @@ namespace WpfApp25
                     myCanvas.Children.Remove(x);
                 if (canRemove)
                     myCanvas.Children.Remove(x);
-
             }
 
             if (bossHealth < 900)
@@ -313,6 +331,16 @@ namespace WpfApp25
                 goLeft = false;
             }
 
+            if (e.Key == Key.A)
+            {
+                goLeftFrnd = false;
+            }
+
+            if (e.Key == Key.D)
+            {
+                goRightFrnd = false;
+            }
+
             if (e.Key == Key.Right)
             {
                 goRight = false;
@@ -332,9 +360,12 @@ namespace WpfApp25
             {
                 Rectangle newBulletFrnd = new Rectangle { Tag = "bulletFrnd", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
                 Rectangle newBulletFrnd1 = new Rectangle { Tag = "bulletFrnd", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
+                Canvas.SetTop(newBulletFrnd1, Canvas.GetTop(friend) - newBulletFrnd1.Height);
+                Canvas.SetLeft(newBulletFrnd1, Canvas.GetLeft(friend) + friend.Width / 2 + 10);
                 Canvas.SetTop(newBulletFrnd, Canvas.GetTop(friend) - newBulletFrnd.Height);
-                Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend) + friend.Width / 2);
+                Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend) + friend.Width / 2 - 10);
                 myCanvas.Children.Add(newBulletFrnd);
+                myCanvas.Children.Add(newBulletFrnd1);
             }
 
             if (e.Key == Key.Enter && gameOver == true)
@@ -366,7 +397,7 @@ namespace WpfApp25
                 Canvas.SetLeft(newBoss, left); //направление большого шлеппы влево
                 myCanvas.Children.Add(newBoss);
                 left -= 1;
-                bossSkin.ImageSource = new BitmapImage(new Uri("Images/bigfloppa.png", UriKind.Relative));
+                bossSkin.ImageSource = new BitmapImage(new Uri("Images/BossDemon.png", UriKind.Relative));
             }
         }
         public Rectangle MakeShield(int limitshield) // попытка создать щит

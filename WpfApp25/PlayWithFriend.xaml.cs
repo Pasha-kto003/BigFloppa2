@@ -43,8 +43,8 @@ namespace WpfApp25
             gameTimer.Start();
             //gameTimer.Stop();
             playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
-            friendSkin.ImageSource = new BitmapImage(new Uri("Images/player.png", UriKind.Relative));
-            canvasSkin.ImageSource = new BitmapImage(new Uri("Images/SpaceForGame.png", UriKind.Relative));
+            friendSkin.ImageSource = new BitmapImage(new Uri("Images/friend.png", UriKind.Relative));
+            canvasSkin.ImageSource = new BitmapImage(new Uri("Images/hell1.png", UriKind.Relative));
             player.Fill = playerSkin;
             friend.Fill = friendSkin;
             myCanvas.Background = canvasSkin;
