@@ -179,11 +179,21 @@ namespace WpfApp25
             if (totalEnemies < 30)
             {
                 enemySpeed = 15;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    Random random = new Random();
+                    EnemyBulletMaker(random.Next(0, 130), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
+                    bulletTimer = bulletTimerLimit;
+                }
             }
 
             if (totalEnemies < 10)
             {
                 enemySpeed = 18;
+                EnemyBulletMaker(Canvas.GetLeft(player) + 20, 10);
+                EnemyBulletMaker(Canvas.GetLeft(friend) + 20, 10);
             }
 
             if (totalEnemies < 1)

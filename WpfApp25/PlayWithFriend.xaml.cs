@@ -176,6 +176,16 @@ namespace WpfApp25
             if (totalEnemies < 20)
             {
                 enemySpeed = 15;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    Random random = new Random();
+                    EnemyBulletMaker(random.Next(0, 130), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(0, 300), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(500, 740), random.Next(3, 10));
+                    bulletTimer = bulletTimerLimit;
+                }
             }
 
             if (totalEnemies == 3)
