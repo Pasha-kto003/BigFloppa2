@@ -43,28 +43,26 @@ namespace WpfApp25
         Rectangle newShield;
 
         public Boss()
-    {
-
+        {
             InitializeComponent();
-        gameTimer.Tick += GameLoop;
-        gameTimer.Interval = TimeSpan.FromMilliseconds(30);
-        gameTimer.Start();
+            gameTimer.Tick += GameLoop;
+            gameTimer.Interval = TimeSpan.FromMilliseconds(30);
+            gameTimer.Start();
             Random random = new Random();
-        bossTimer.Tick += BossTimer_Tick;
-        bossTimer.Interval = TimeSpan.FromMilliseconds(random.Next(500,6000));
-        bossTimer.Start();
-            //gameTimer.Stop();
-        playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
-        myCanvasSkin.ImageSource = new BitmapImage(new Uri("Images/BigFloppanew.png", UriKind.Relative));
-        player.Fill = playerSkin;
-        myCanvas.Background = myCanvasSkin;
-        myCanvas.Focus();
-        progres.Maximum = bossHealth;
-        progres.Value = bossHealth;
-        MakeBoss(1);
-        progres.Maximum = bossHealth;
-        progres.Value = bossHealth;
-        newShield = MakeShield(2);
+            bossTimer.Tick += BossTimer_Tick;
+            bossTimer.Interval = TimeSpan.FromMilliseconds(random.Next(500,6000));
+            bossTimer.Start();
+            playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
+            myCanvasSkin.ImageSource = new BitmapImage(new Uri("Images/BigFloppanew.png", UriKind.Relative));
+            player.Fill = playerSkin;
+            myCanvas.Background = myCanvasSkin;
+            myCanvas.Focus();
+            progres.Maximum = bossHealth;
+            progres.Value = bossHealth;
+            MakeBoss(1);
+            progres.Maximum = bossHealth;
+            progres.Value = bossHealth;
+            newShield = MakeShield(2);
             bossSpeed = 6;
             side = 1;
         }
@@ -79,7 +77,7 @@ namespace WpfApp25
                 side = -1;
                 return;
             }
-          else
+            else
             {
                 side = 1;
             }
@@ -147,7 +145,7 @@ namespace WpfApp25
                                 itemsToRemove.Add(y);
                             }
                             itemsToRemove.Add(x);
-                            bossHealth -= 10;
+                            bossHealth -= 20;
                             progres.Value = bossHealth;
                         }
 
@@ -155,20 +153,17 @@ namespace WpfApp25
                 }
             }
             if (x is Rectangle && (string)x.Tag == "boss")
-            {
-                
+            {     
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bossSpeed);
                 if (Canvas.GetLeft(x) > 820) // условие перемещения шлеппы
                 {
                     Canvas.SetLeft(x, -80);
-                    //Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
                 }
                 if (Canvas.GetLeft(x) < -100) // условие перемещения шлеппы
                 {
-                        Canvas.SetLeft(x, 700);
-                        //Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+                    Canvas.SetLeft(x, 700);
                 }
-                }
+            }
             if (x is Rectangle && (string)x.Tag == "bossBullet")
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + 10); //скорость пули босса
@@ -185,31 +180,25 @@ namespace WpfApp25
                 if (hitbox.IntersectsWith(bossBulletHitBox) && canIntersect)
                 {
                     itemsToRemove.Add(x);
-                        //myCanvas.Children.Remove(x);
                     if (shieldHealth < 1)
                     {
                         itemsToRemove.Add(newShield);
-                            canRemove = true;
-                            canIntersect = false;
+                        canRemove = true;
+                        canIntersect = false;
                     }
                     shieldHealth -= 5;
                 }
-
-
             }
-
         }
-
         foreach (Rectangle x in itemsToRemove)
         {
                 if (x.Tag.ToString() != "shield")
-            myCanvas.Children.Remove(x);
+                myCanvas.Children.Remove(x);
                 if (canRemove)
-                    myCanvas.Children.Remove(x);
-
+                myCanvas.Children.Remove(x);
         }
 
-            if (bossHealth < 900)
+        if (bossHealth < 900)
         {
             bossSpeed = 11 * side;
         }
@@ -250,18 +239,15 @@ namespace WpfApp25
 
         if (bossHealth < 1)
         {
-
             ShowGameOver("Вы прошли игру");
             MessageBox.Show("Вы прошли игру (Не один большой Шлеппа русский кот не пострадал)");
         }
-
         foreach (Rectangle i in itemsToRemove) //удаление Большого Шлеппы
         {
             if (bossHealth < 1)
             {
                 myCanvas.Children.Remove(i);
             }
-
         }
     }
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -289,14 +275,18 @@ namespace WpfApp25
         }
         if (e.Key == Key.Space)
         {
-            Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
-            Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
+            ImageBrush bulletSkin = new ImageBrush();
+            ImageBrush bulletSkin1 = new ImageBrush();
+            Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
+            Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin1 };
             Canvas.SetTop(newBullet2, Canvas.GetTop(player) - newBullet2.Height);
             Canvas.SetLeft(newBullet2, Canvas.GetLeft(player) + player.Width / 2 + 10);
             Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
             Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2 - 10);
             myCanvas.Children.Add(newBullet);
             myCanvas.Children.Add(newBullet2);
+            bulletSkin.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
+            bulletSkin1.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
         }
         if (e.Key == Key.Enter && gameOver == true)
         {
@@ -335,14 +325,16 @@ namespace WpfApp25
 
         if (shieldcount < limitshield)
         {
+            ImageBrush shieldSkin = new ImageBrush();
             Random random = new Random();
             double height = random.Next(200, 300);
             double width = random.Next(0, 700);
-            Rectangle newShield = new Rectangle { Tag = "shield", Height = 30, Width = 100, Fill = Brushes.Red, Stroke = Brushes.Black };
+            Rectangle newShield = new Rectangle { Tag = "shield", Height = 60, Width = 100, Fill = shieldSkin };
             Canvas.SetTop(newShield, height);
             Canvas.SetLeft(newShield, width);
             myCanvas.Children.Add(newShield);
             shieldcount++;
+            shieldSkin.ImageSource = new BitmapImage(new Uri("Images/Shield.png", UriKind.Relative));
             return newShield;
         }
         Rectangle rectangle = new Rectangle { Tag = "shield1", Height = 0, Width = 0, Fill = Brushes.Transparent, Stroke = Brushes.Transparent };

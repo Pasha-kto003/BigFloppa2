@@ -10,17 +10,12 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-        <Label Name="enemiesLeft" Foreground="White" FontSize="14" 
+            <Label Name="enemiesLeft" Foreground="White" FontSize="14" 
                FontWeight="ExtraBold" 
                Content="Уровень 1. Осталось живых врагов: 0" Grid.Column="0">
-        </Label>
-            <!--<Button Content=" Игра с другом" Grid.Column="1" Click="PlayFriend"/>-->
+            </Label>
         </Grid>
-        
-
         <Rectangle Name="player" Fill="Gray" Height="65" Width="55" Canvas.Left="381" Canvas.Top="394"/>
-        <!--<Rectangle x:Name="friend" Fill="Gray" Height="65" Width="55" Canvas.Left="300" Canvas.Top="394"/>-->
     </Canvas>
 </Window>

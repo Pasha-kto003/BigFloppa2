@@ -66,7 +66,7 @@ namespace WpfApp25
             progres.Maximum = bossHealth;
             progres.Value = bossHealth;
             newShield = MakeShield(2);
-            bossSpeed = 6;
+            bossSpeed = 9;
             side = 1;
         }
 
@@ -130,6 +130,7 @@ namespace WpfApp25
             if (bulletTimer < 0)
             {
                 BossBulletMaker(Canvas.GetLeft(player) + 20, 10);
+                BossBulletMaker(Canvas.GetLeft(friend) + 20, 10);
                 Random random = new Random();
                 BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
                 BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
@@ -164,7 +165,6 @@ namespace WpfApp25
                                 bossHealth -= 10;
                                 progres.Value = bossHealth;
                             }
-
                         }
                     }
                 }
@@ -193,13 +193,11 @@ namespace WpfApp25
                                 bossHealth -= 10;
                                 progres.Value = bossHealth;
                             }
-
                         }
                     }
                 }
                 if (x is Rectangle && (string)x.Tag == "boss")
                 {
-
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bossSpeed);
                     if (Canvas.GetLeft(x) > 820) // условие перемещения шлеппы
                     {
@@ -208,8 +206,7 @@ namespace WpfApp25
                     if (Canvas.GetLeft(x) < -100) // условие перемещения шлеппы
                     {
                         Canvas.SetLeft(x, 700);
-                    }
-                   
+                    }    
                 }
                 if (x is Rectangle && (string)x.Tag == "bossBullet")
                 {
@@ -237,7 +234,6 @@ namespace WpfApp25
                         shieldHealth -= 5;
                     }
                 }
-
             }
 
             foreach (Rectangle x in itemsToRemove)
@@ -248,15 +244,30 @@ namespace WpfApp25
                     myCanvas.Children.Remove(x);
             }
 
-            if (bossHealth < 900)
+            if (bossHealth < 1500)
             {
                 bossSpeed = 11 * side;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    BossBulletMaker(Canvas.GetLeft(player) + 20, 10);
+                    BossBulletMaker(Canvas.GetLeft(friend) + 20, 10);
+                    bulletTimer = bulletTimerLimit;
+                }
             }
-            if (bossHealth < 800)
+            if (bossHealth < 900)
             {
                 bossSpeed = 12 * side;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    Random random = new Random();
+                    BossBulletMaker(random.Next(0, 300), random.Next(3, 10));
+                    BossBulletMaker(random.Next(500, 740), random.Next(3, 10));
+                    bulletTimer = bulletTimerLimit;
+                }
             }
-            if (bossHealth < 700)
+            if (bossHealth < 600)
             {
                 bossSpeed = 13 * side;
                 bulletTimer -= 3;
@@ -270,7 +281,7 @@ namespace WpfApp25
                     bulletTimer = bulletTimerLimit;
                 }
             }
-            if (bossHealth < 400)
+            if (bossHealth < 300)
             {
                 bulletTimer -= 3;
                 if (bulletTimer < 0)
@@ -300,7 +311,6 @@ namespace WpfApp25
                 {
                     myCanvas.Children.Remove(i);
                 }
-
             }
         }
         private void KeyIsDown(object sender, KeyEventArgs e)
