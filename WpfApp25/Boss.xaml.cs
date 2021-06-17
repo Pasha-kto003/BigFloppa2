@@ -101,7 +101,7 @@ namespace WpfApp25
        
             }    
             Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
-        liveBoss.Content = "Осталось здоровья у босса: " + bossHealth;
+        liveBoss.Content = "Жизни босса: ";
         if (goLeft == true && Canvas.GetLeft(player) > 0)
         {
             Canvas.SetLeft(player, Canvas.GetLeft(player) - 10);
@@ -174,7 +174,7 @@ namespace WpfApp25
                 Rect bossBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (playerHitBox.IntersectsWith(bossBulletHitBox))
                 {
-                    ShowGameOver("Пришельцы испепелили вас!!");
+                    ShowGameOver("Босс испепелил вас!!");
                 }
 
                 if (hitbox.IntersectsWith(bossBulletHitBox) && canIntersect)

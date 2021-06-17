@@ -218,7 +218,7 @@ namespace WpfApp25
                     Rect bossBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     if (playerHitBox.IntersectsWith(bossBulletHitBox) || friendHitBox.IntersectsWith(bossBulletHitBox))
                     {
-                        ShowGameOver("Пришельцы испепелили вас!!");
+                        ShowGameOver("Босс испепелил вас!!");
                     }
 
                     if (hitbox.IntersectsWith(bossBulletHitBox) && canIntersect)
