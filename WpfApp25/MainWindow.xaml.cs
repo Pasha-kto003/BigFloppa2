@@ -155,8 +155,7 @@ namespace WpfApp25
                 ShowGameOver("Поздравляю вы выиграли!");
                 Level2 lv = new Level2();
                 lv.Show();
-                Close();
-              
+                Close();    
             }
         } //конец цикла
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -183,9 +182,11 @@ namespace WpfApp25
 
             if (e.Key == Key.Space)
             {
-                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange,  Stroke = Brushes.Red };
+                ImageBrush bulletSkin = new ImageBrush();
+                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2);
+                bulletSkin.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
                 myCanvas.Children.Add(newBullet);
             }
 

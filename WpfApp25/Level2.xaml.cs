@@ -39,7 +39,6 @@ namespace WpfApp25
             gameTimer.Tick += GameLoop;
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
             gameTimer.Start();
-            //gameTimer.Stop();
             playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
             player.Fill = playerSkin;
             myCanvas.Background = myCanvasSkin;
@@ -196,10 +195,12 @@ namespace WpfApp25
 
             if (e.Key == Key.Space)
             {
-                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
+                ImageBrush bulletSkin = new ImageBrush();
+                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2);
                 myCanvas.Children.Add(newBullet);
+                bulletSkin.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
             }
 
             if (e.Key == Key.Enter && gameOver == true)

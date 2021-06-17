@@ -357,25 +357,30 @@ namespace WpfApp25
             }
             if (e.Key == Key.Space)
             {
-                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
-                Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
+                ImageBrush bulletSkin = new ImageBrush();
+                ImageBrush bulletSkinfrnd = new ImageBrush();
+                Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
+                Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Canvas.SetTop(newBullet2, Canvas.GetTop(player) - newBullet2.Height);
                 Canvas.SetLeft(newBullet2, Canvas.GetLeft(player) + player.Width / 2 + 10);
                 Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2 - 10);
                 myCanvas.Children.Add(newBullet);
                 myCanvas.Children.Add(newBullet2);
+                bulletSkin.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
             }
             if (e.Key == Key.LeftCtrl)
             {
-                Rectangle newBulletFrnd = new Rectangle { Tag = "bulletFrnd", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
-                Rectangle newBulletFrnd1 = new Rectangle { Tag = "bulletFrnd", Height = 20, Width = 5, Fill = Brushes.Orange, Stroke = Brushes.Red };
+                ImageBrush bulletSkinfrnd = new ImageBrush();
+                Rectangle newBulletFrnd = new Rectangle { Tag = "bulletFrnd", Height = 50, Width = 40, Fill = bulletSkinfrnd };
+                Rectangle newBulletFrnd1 = new Rectangle { Tag = "bulletFrnd", Height = 50, Width = 40, Fill = bulletSkinfrnd };
                 Canvas.SetTop(newBulletFrnd1, Canvas.GetTop(friend) - newBulletFrnd1.Height);
                 Canvas.SetLeft(newBulletFrnd1, Canvas.GetLeft(friend) + friend.Width / 2 + 10);
                 Canvas.SetTop(newBulletFrnd, Canvas.GetTop(friend) - newBulletFrnd.Height);
                 Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend) + friend.Width / 2 - 10);
                 myCanvas.Children.Add(newBulletFrnd);
                 myCanvas.Children.Add(newBulletFrnd1);
+                bulletSkinfrnd.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
             }
 
             if (e.Key == Key.Enter && gameOver == true)
