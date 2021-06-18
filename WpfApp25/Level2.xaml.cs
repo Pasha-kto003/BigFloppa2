@@ -131,14 +131,28 @@ namespace WpfApp25
                 myCanvas.Children.Remove(i);
             }
 
-            if(totalEnemies < 30)
+            if(totalEnemies < 40)
             {
                 enemySpeed = 12;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    Random random = new Random();
+                    EnemyBulletMaker(random.Next(100, 300), random.Next(3, 10));
+                    EnemyBulletMaker(random.Next(400, 790), random.Next(3, 10));
+                    bulletTimer = bulletTimerLimit;
+                }
             }
 
             if (totalEnemies < 30)
             {
                 enemySpeed = 15;
+                bulletTimer -= 3;
+                if (bulletTimer < 0)
+                {
+                    EnemyBulletMaker(Canvas.GetLeft(player) + 30, 10);
+                    bulletTimer = bulletTimerLimit;
+                }
             }
 
             if (totalEnemies < 20)
