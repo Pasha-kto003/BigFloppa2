@@ -297,10 +297,8 @@ namespace WpfApp25
                     bulletTimer = bulletTimerLimit;
                 }
             }
-
             if (bossHealth < 1)
             {
-
                 ShowGameOver("Вы прошли игру");
                 MessageBox.Show("Вы прошли игру (Не один большой Шлеппа русский кот не пострадал)");
             }
@@ -409,13 +407,13 @@ namespace WpfApp25
                 ImageBrush bossSkin = new ImageBrush();
                 Rectangle newBoss = new Rectangle { Tag = "boss", Height = 100, Width = 200, Fill = bossSkin };
                 Canvas.SetTop(newBoss, 50);
-                Canvas.SetLeft(newBoss, left); //направление большого шлеппы влево
+                Canvas.SetLeft(newBoss, left);
                 myCanvas.Children.Add(newBoss);
                 left -= 1;
                 bossSkin.ImageSource = new BitmapImage(new Uri("Images/BossDemon.png", UriKind.Relative));
             }
         }
-        public Rectangle MakeShield(int limitshield) // попытка создать щит
+        public Rectangle MakeShield(int limitshield)
         {
 
             if (shieldcount < limitshield)
