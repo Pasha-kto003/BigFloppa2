@@ -240,7 +240,7 @@ namespace WpfApp25
         if (bossHealth < 1)
         {
             ShowGameOver("Вы прошли игру");
-            MessageBox.Show("Вы прошли игру (Не один большой Шлеппа русский кот не пострадал)");
+            MessageBox.Show("Вы прошли игру (Не один большой Шлеппа русский кот не пострадал!)");
         }
         foreach (Rectangle i in itemsToRemove) //удаление Большого Шлеппы
         {
