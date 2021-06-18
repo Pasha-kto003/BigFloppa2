@@ -115,10 +115,10 @@ namespace WpfApp25
         {
             BossBulletMaker(Canvas.GetLeft(player) + 20, 10);
             Random random = new Random();
-            BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
-            BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
-            BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
-            BossBulletMaker(random.Next(0, 500), random.Next(3, 10));
+            BossBulletMaker(random.Next(0, 310), random.Next(3, 10));
+            BossBulletMaker(random.Next(100, 400), random.Next(3, 10));
+            BossBulletMaker(random.Next(150, 500), random.Next(3, 10));
+            BossBulletMaker(random.Next(200, 600), random.Next(3, 10));
             bulletTimer = bulletTimerLimit;
         }
         foreach (var x in myCanvas.Children.OfType<Rectangle>())

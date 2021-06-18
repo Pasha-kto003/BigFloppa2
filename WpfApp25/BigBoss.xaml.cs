@@ -235,7 +235,6 @@ namespace WpfApp25
                     }
                 }
             }
-
             foreach (Rectangle x in itemsToRemove)
             {
                 if (x.Tag.ToString() != "shield")
