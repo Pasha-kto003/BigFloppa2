@@ -174,7 +174,7 @@ namespace WpfApp25
                 Rect bossBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (playerHitBox.IntersectsWith(bossBulletHitBox))
                 {
-                    ShowGameOver("Босс испепелил вас!!");
+                    ShowGameOver("Шлеппа испепелил вас!!");
                 }
 
                 if (hitbox.IntersectsWith(bossBulletHitBox) && canIntersect)
@@ -280,7 +280,7 @@ namespace WpfApp25
             Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
             Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin1 };
             Canvas.SetTop(newBullet2, Canvas.GetTop(player) - newBullet2.Height);
-            Canvas.SetLeft(newBullet2, Canvas.GetLeft(player) + player.Width / 2 + 10);
+            Canvas.SetLeft(newBullet2, Canvas.GetLeft(player));
             Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
             Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2 - 10);
             myCanvas.Children.Add(newBullet);
@@ -322,7 +322,6 @@ namespace WpfApp25
     }
     public Rectangle MakeShield(int limitshield) // попытка создать щит
     {
-
         if (shieldcount < limitshield)
         {
             ImageBrush shieldSkin = new ImageBrush();
@@ -343,11 +342,11 @@ namespace WpfApp25
         myCanvas.Children.Add(rectangle);
         return rectangle;
     }
-    private void ShowGameOver(string message)
-    {
-        gameOver = true;
-        gameTimer.Stop();
-        liveBoss.Content = " " + message + " Нажмите Enter чтобы снова играть";
-    }
-  }
+        private void ShowGameOver(string message)
+        {
+            gameOver = true;
+            gameTimer.Stop();
+            liveBoss.Content = " " + message + " Нажмите Enter чтобы снова играть";
+        }
+    }    
 }

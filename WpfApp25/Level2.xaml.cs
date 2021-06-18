@@ -37,7 +37,9 @@ namespace WpfApp25
         {
             InitializeComponent();
             gameTimer.Tick += GameLoop;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(30);
+            gameTimer.Interval = TimeSpan.FromMilliseconds(30); 
+
+
             gameTimer.Start();
             playerSkin.ImageSource = new BitmapImage(new Uri("Images/MyShip_-3000.png", UriKind.Relative));
             player.Fill = playerSkin;
@@ -65,6 +67,7 @@ namespace WpfApp25
             {
                 EnemyBulletMaker(Canvas.GetLeft(player) + 20, 10);
                 Random random = new Random();
+                EnemyBulletMaker(random.Next(0, 500), random.Next(3, 10));
                 EnemyBulletMaker(random.Next(0, 500), random.Next(3, 10));
                 EnemyBulletMaker(random.Next(0, 500), random.Next(3, 10));
                 EnemyBulletMaker(random.Next(0, 500), random.Next(3, 10));
@@ -151,11 +154,13 @@ namespace WpfApp25
                 if (bulletTimer < 0)
                 {
                     EnemyBulletMaker(Canvas.GetLeft(player) + 30, 10);
+                    Random random = new Random();
+                    EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
                     bulletTimer = bulletTimerLimit;
                 }
             }
 
-            if (totalEnemies < 20)
+            if (totalEnemies < 15)
             {
                 enemySpeed = 18;
                 bulletTimer -= 3;

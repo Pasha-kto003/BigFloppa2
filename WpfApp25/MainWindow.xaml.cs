@@ -132,7 +132,6 @@ namespace WpfApp25
                 if (bulletTimer < 0)
                 {
                     Random random = new Random();
-                    EnemyBulletMaker(random.Next(0, 130), random.Next(3, 10));
                     EnemyBulletMaker(random.Next(0, 280), random.Next(3, 10));
                     EnemyBulletMaker(random.Next(0, 300), random.Next(3, 10));
                     EnemyBulletMaker(random.Next(500, 740), random.Next(3, 10));
@@ -205,7 +204,6 @@ namespace WpfApp25
             Canvas.SetLeft(enemyBullet, x);
             myCanvas.Children.Add(enemyBullet);
             bulletEnemy.ImageSource = new BitmapImage(new Uri("Images/BossBullet2.png", UriKind.Relative));
-
         }
 
         private void MakeEnemies(int limit)

@@ -228,7 +228,7 @@ namespace WpfApp25
                 ImageBrush bulletSkin = new ImageBrush();
                 Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
-                Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2);
+                Canvas.SetLeft(newBullet, Canvas.GetLeft(player));
                 myCanvas.Children.Add(newBullet);
                 bulletSkin.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
             }
@@ -238,7 +238,7 @@ namespace WpfApp25
                 ImageBrush bulletSkinfrnd = new ImageBrush();
                 Rectangle newBulletFrnd = new Rectangle { Tag = "bulletFrnd", Height = 50, Width = 40, Fill = bulletSkinfrnd };
                 Canvas.SetTop(newBulletFrnd, Canvas.GetTop(friend) - newBulletFrnd.Height);
-                Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend) + friend.Width / 2);
+                Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend));
                 myCanvas.Children.Add(newBulletFrnd);
                 bulletSkinfrnd.ImageSource = new BitmapImage(new Uri("Images/Bullet.png", UriKind.Relative));
             }

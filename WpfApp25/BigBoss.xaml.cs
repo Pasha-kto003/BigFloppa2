@@ -359,7 +359,7 @@ namespace WpfApp25
                 Rectangle newBullet = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Rectangle newBullet2 = new Rectangle { Tag = "bullet", Height = 50, Width = 40, Fill = bulletSkin };
                 Canvas.SetTop(newBullet2, Canvas.GetTop(player) - newBullet2.Height);
-                Canvas.SetLeft(newBullet2, Canvas.GetLeft(player) + player.Width / 2 + 10);
+                Canvas.SetLeft(newBullet2, Canvas.GetLeft(player));
                 Canvas.SetTop(newBullet, Canvas.GetTop(player) - newBullet.Height);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(player) + player.Width / 2 - 10);
                 myCanvas.Children.Add(newBullet);
@@ -372,7 +372,7 @@ namespace WpfApp25
                 Rectangle newBulletFrnd = new Rectangle { Tag = "bulletFrnd", Height = 50, Width = 40, Fill = bulletSkinfrnd };
                 Rectangle newBulletFrnd1 = new Rectangle { Tag = "bulletFrnd", Height = 50, Width = 40, Fill = bulletSkinfrnd };
                 Canvas.SetTop(newBulletFrnd1, Canvas.GetTop(friend) - newBulletFrnd1.Height);
-                Canvas.SetLeft(newBulletFrnd1, Canvas.GetLeft(friend) + friend.Width / 2 + 10);
+                Canvas.SetLeft(newBulletFrnd1, Canvas.GetLeft(friend));
                 Canvas.SetTop(newBulletFrnd, Canvas.GetTop(friend) - newBulletFrnd.Height);
                 Canvas.SetLeft(newBulletFrnd, Canvas.GetLeft(friend) + friend.Width / 2 - 10);
                 myCanvas.Children.Add(newBulletFrnd);
@@ -417,13 +417,15 @@ namespace WpfApp25
 
             if (shieldcount < limitshield)
             {
+                ImageBrush shieldSkin = new ImageBrush();
                 Random random = new Random();
                 double height = random.Next(200, 300);
                 double width = random.Next(0, 700);
-                Rectangle newShield = new Rectangle { Tag = "shield", Height = 30, Width = 100, Fill = Brushes.Red, Stroke = Brushes.Black };
+                Rectangle newShield = new Rectangle { Tag = "shield", Height = 60, Width = 100, Fill = shieldSkin };
                 Canvas.SetTop(newShield, height);
                 Canvas.SetLeft(newShield, width);
                 myCanvas.Children.Add(newShield);
+                shieldSkin.ImageSource = new BitmapImage(new Uri("Images/Shield.png", UriKind.Relative));
                 shieldcount++;
                 return newShield;
             }
