@@ -273,7 +273,6 @@ namespace WpfApp25
                 if (bulletTimer < 0)
                 {
                     Random random = new Random();
-                    BossBulletMaker(random.Next(0, 130), random.Next(3, 10));
                     BossBulletMaker(random.Next(0, 280), random.Next(3, 10));
                     BossBulletMaker(random.Next(0, 300), random.Next(3, 10));
                     BossBulletMaker(random.Next(400, 740), random.Next(3, 10));
@@ -289,8 +288,6 @@ namespace WpfApp25
                     BossBulletMaker(random.Next(100, 400), random.Next(3, 10));
                     BossBulletMaker(random.Next(150, 450), random.Next(3, 10));
                     BossBulletMaker(random.Next(180, 480), random.Next(3, 10));
-                    BossBulletMaker(random.Next(250, 500), random.Next(3, 10));
-                    BossBulletMaker(random.Next(300, 530), random.Next(3, 10));
                     BossBulletMaker(random.Next(320, 540), random.Next(3, 10));
                     BossBulletMaker(random.Next(500, 700), random.Next(3, 10));
                     bulletTimer = bulletTimerLimit;

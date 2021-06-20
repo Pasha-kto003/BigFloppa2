@@ -69,9 +69,6 @@ namespace WpfApp25
 
         private void BossTimer_Tick(object sender, EventArgs e)
         {
-            //Random random = new Random();
-            //int value = random.Next(1,2);
-    
             if (side == 1)
             {
                 side = -1;
@@ -81,12 +78,10 @@ namespace WpfApp25
             {
                 side = 1;
             }
-            
             bossSpeed = bossSpeed * side;
-
         }
 
-        private void GameLoop(object sender, EventArgs e)
+    private void GameLoop(object sender, EventArgs e)
     {
         if (newShield is Rectangle && (string)newShield.Tag == "shield")
         {
@@ -98,9 +93,8 @@ namespace WpfApp25
             if (Canvas.GetLeft(newShield) > 820) 
             {
                 Canvas.SetLeft(newShield, -80);
-       
             }    
-            Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+        Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
         liveBoss.Content = "Жизни босса: ";
         if (goLeft == true && Canvas.GetLeft(player) > 0)
         {
@@ -137,7 +131,6 @@ namespace WpfApp25
                     if (y is Rectangle && (string)y.Tag == "boss")
                     {
                         Rect bossHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
-
                         if (bullet.IntersectsWith(bossHit))
                         {
                             if (bossHealth < 1)
@@ -148,7 +141,6 @@ namespace WpfApp25
                             bossHealth -= 20;
                             progres.Value = bossHealth;
                         }
-
                     }
                 }
             }
@@ -176,7 +168,6 @@ namespace WpfApp25
                 {
                     ShowGameOver("Шлеппа испепелил вас!!");
                 }
-
                 if (hitbox.IntersectsWith(bossBulletHitBox) && canIntersect)
                 {
                     itemsToRemove.Add(x);

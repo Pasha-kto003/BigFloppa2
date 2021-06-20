@@ -17,7 +17,6 @@ namespace WpfApp25
     public partial class MainWindow : Window
     {
         bool goLeft, goRight;
-        bool goLeftFrnd, goRightFrnd;
         List<Rectangle> itemsToRemove = new List<Rectangle>();
         int ImagesOfEnemy = 0;
         int bulletTimer = 0;
@@ -199,7 +198,7 @@ namespace WpfApp25
         private void EnemyBulletMaker(double x, double y)
         {
             ImageBrush bulletEnemy = new ImageBrush();
-            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill =bulletEnemy, StrokeThickness = 5 };
+            Rectangle enemyBullet = new Rectangle { Tag = "enemyBullet", Height = 40, Width = 15, Fill = bulletEnemy, StrokeThickness = 5 };
             Canvas.SetTop(enemyBullet, y);
             Canvas.SetLeft(enemyBullet, x);
             myCanvas.Children.Add(enemyBullet);
