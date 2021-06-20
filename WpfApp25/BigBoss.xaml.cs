@@ -190,7 +190,7 @@ namespace WpfApp25
                                     itemsToRemove.Add(y);
                                 }
                                 itemsToRemove.Add(x);
-                                bossHealth -= 10;
+                                bossHealth -= 20;
                                 progres.Value = bossHealth;
                             }
                         }
